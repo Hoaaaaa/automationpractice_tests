@@ -1,15 +1,14 @@
 class ProductCard:
-    # TODO: choose specific product instead of first in DOM
     def __init__(self, element):
         self.element = element
 
     @property
     def price(self):
-        return self.element.find(".right-block .product-price").text
+        return self.element.find(".right-block .product-price")
 
     @property
     def name(self):
-        return self.element.find(".product-name").text
+        return self.element.find(".product-name")
 
     def add_to_cart(self):
         self.element.find(".left-block").hover()

@@ -1,5 +1,5 @@
-from model.pages.main_page import MainPage
-from model.pages.order_page import OrderPage
+from model.pages.main import MainPage
+from model.pages.order import OrderPage
 
 
 class App:
