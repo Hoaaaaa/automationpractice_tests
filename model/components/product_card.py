@@ -1,13 +1,17 @@
-from selene.support.jquery_style_selectors import s
-
-
 class ProductCard:
-    card = s(".product-container")
+    # TODO: choose specific product instead of first in DOM
+    def __init__(self, element):
+        self.element = element
 
-    def __init__(self):
-        self.name = self.card.find(".product-name").text
-        self.price = self.card.find(".right-block .product-price").text
+    @property
+    def price(self):
+        return self.element.find(".right-block .product-price").text
+
+    @property
+    def name(self):
+        return self.element.find(".product-name").text
 
     def add_to_cart(self):
-        self.card.find(".left-block").hover()
-        self.card.find(".right-block .ajax_add_to_cart_button").click()
+        self.element.find(".left-block").hover()
+        self.element.find(".right-block .ajax_add_to_cart_button").click()
+        # TODO: return cart window

@@ -1,2 +1,9 @@
+from selene import browser
+
+
 class MainPage:
-    pass
+    __url = "http://automationpractice.com/"
+
+    def open(self):
+        browser.open_url(self.__url)
+        return self
