@@ -13,3 +13,6 @@ class CartItem:
     @property
     def total_price(self):
         return self.element.find(".cart_total .price")
+
+    def delete(self):
+        self.element.find(".cart_quantity_delete").click()

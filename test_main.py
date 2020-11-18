@@ -39,7 +39,6 @@ def test_user_can_delete_product_from_cart():
     ProductList().product(1).add_to_cart()
     s("#layer_cart [title='Proceed to checkout']").click()
 
-    # OrderPage
-    s("#order-detail-content .cart_quantity_delete").click()
-    # TODO: should have 0 products
-    s(".alert").should(have.text("Your shopping cart is empty"))
+    App.OrderPage.Cart.item(1).delete()
+    # App.OrderPage.should_not_have_cart()
+    App.OrderPage.Cart.should_have_number_of_items(0)

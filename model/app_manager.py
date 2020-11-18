@@ -3,9 +3,6 @@ from model.pages.order import OrderPage
 
 
 class App:
+    # TODO: find out difference between class instance like variable and property
     MainPage = MainPage()
     OrderPage = OrderPage()
-
-# .center_column
-#   .product_list
-#      .product-container
