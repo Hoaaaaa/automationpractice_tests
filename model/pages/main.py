@@ -1,9 +1,5 @@
-from selene import browser
+from model.components.product_list import ProductList
 
 
 class MainPage:
-    __url = "http://automationpractice.com/"
-
-    def open(self):
-        browser.open_url(self.__url)
-        return self
+    ProductList = ProductList()

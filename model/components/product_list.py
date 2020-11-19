@@ -16,3 +16,6 @@ class ProductList:
 
     def product(self, index):
         return ProductCard(self.products[index-1])
+
+    def add_product_to_cart(self, index):
+        self.product(index).add_to_cart()
