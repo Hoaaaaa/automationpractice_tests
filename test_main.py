@@ -2,15 +2,17 @@ from selene.support.conditions import have
 from selene.support.jquery_style_selectors import s
 
 from model.app_manager import App
+from model.given import Given
 from model.components.product_list import ProductList
 
 # TODO: refactor project structure
 # TODO: config pytest output
+# TODO: pycharm run/debug don`t use arguments in pytest.ini
 
 
 def test_user_can_login():
     # TODO: GIVEN user is registered
-    App.MainPage.open()
+    Given.at_main_page()
     s(".login").click()
     s("#email").type("hoaa@rambler.ru")
     s("#passwd").type("12345")
@@ -19,22 +21,20 @@ def test_user_can_login():
 
 
 def test_user_can_add_product_to_cart():
-    App.MainPage.open()
+    Given.at_main_page()
+    # TODO: consider another way to get product
+    product = ProductList().product(2).data
 
-    product = ProductList().product(2)
-    product.add_to_cart()
-
+    App.MainPage.ProductList.add_to_cart(product)
+    # TODO: create window component
     s("#layer_cart [title='Proceed to checkout']").click()
-
+    # TODO: make product object (should_have(product))
     App.OrderPage.Cart.item(1).name.should(have.exact_text(f"{product.name}"))
     App.OrderPage.Cart.item(1).price.should(have.exact_text(f"{product.price}"))
 
 
 def test_user_can_delete_product_from_cart():
-    # TODO: GIVEN user have product in cart
-    App.MainPage.open()
-    ProductList().product(1).add_to_cart()
-    s("#layer_cart [title='Proceed to checkout']").click()
+    Given.at_order_page_with_product_in_cart()
 
     App.OrderPage.Cart.item(1).delete()
     App.OrderPage.should_not_have_cart()
