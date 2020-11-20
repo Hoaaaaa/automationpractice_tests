@@ -1,5 +1,4 @@
 from selene import browser
-from selene.support.jquery_style_selectors import s
 
 from model.components.product_list import ProductList
 
@@ -14,5 +13,5 @@ class Given:
     @staticmethod
     def at_order_page_with_product_in_cart():
         Given.at_main_page()
-        ProductList().product(1).add_to_cart()
-        s("#layer_cart [title='Proceed to checkout']").click()
+        ProductList().card(1).add_to_cart()\
+            .cart_layer.proceed_to_checkout()

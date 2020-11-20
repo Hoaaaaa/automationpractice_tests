@@ -1,5 +1,6 @@
 from selene.support.jquery_style_selectors import s
 
+from model.components.product import Product
 from model.components.product_card import ProductCard
 
 
@@ -15,9 +16,13 @@ class ProductList:
         return self.element.find_all(".product-container")
 
     def product(self, index):
+        return Product(self.products[index-1])
+
+    def card(self, index):
         return ProductCard(self.products[index-1])
 
-    # TODO: if it dont need self, is it must be inside ProductList?
+    # TODO: if it don`t need self, is it must be inside ProductList?
+    #   MainPage.add_to_cart?
     @staticmethod
     def add_to_cart(product_object):
-        ProductCard(product_object.element).add_to_cart()
+        return ProductCard(product_object.element).add_to_cart()

@@ -7,7 +7,7 @@ from model.components.product_list import ProductList
 
 # TODO: refactor project structure
 # TODO: config pytest output
-# TODO: pycharm run/debug don`t use arguments in pytest.ini
+# TODO: figure out naming of properties which return class
 
 
 def test_user_can_login():
@@ -22,12 +22,11 @@ def test_user_can_login():
 
 def test_user_can_add_product_to_cart():
     Given.at_main_page()
-    # TODO: consider another way to get product
-    product = ProductList().product(2).data
+    product = ProductList().product(2)  # TODO: consider another way to get product
 
-    App.MainPage.ProductList.add_to_cart(product)
-    # TODO: create window component
-    s("#layer_cart [title='Proceed to checkout']").click()
+    (App.MainPage
+        .ProductList.add_to_cart(product)
+        .cart_layer.proceed_to_checkout())
 
     App.OrderPage.Cart.item(1).should_have(product)
 
