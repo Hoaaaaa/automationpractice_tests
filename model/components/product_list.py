@@ -19,5 +19,5 @@ class ProductList:
 
     # TODO: if it dont need self, is it must be inside ProductList?
     @staticmethod
-    def add_to_cart(product):
-        ProductCard(product.element).add_to_cart()
+    def add_to_cart(product_object):
+        ProductCard(product_object.element).add_to_cart()

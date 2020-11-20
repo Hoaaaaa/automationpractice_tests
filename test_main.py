@@ -17,7 +17,7 @@ def test_user_can_login():
     s("#email").type("hoaa@rambler.ru")
     s("#passwd").type("12345")
     s("#SubmitLogin").click()
-    s(".header_user_info .account").should(have.text("Test Test"))
+    s(".header_user_info .account").should(have.text("Tests Test"))
 
 
 def test_user_can_add_product_to_cart():
@@ -28,9 +28,8 @@ def test_user_can_add_product_to_cart():
     App.MainPage.ProductList.add_to_cart(product)
     # TODO: create window component
     s("#layer_cart [title='Proceed to checkout']").click()
-    # TODO: make product object (should_have(product))
-    App.OrderPage.Cart.item(1).name.should(have.exact_text(f"{product.name}"))
-    App.OrderPage.Cart.item(1).price.should(have.exact_text(f"{product.price}"))
+
+    App.OrderPage.Cart.item(1).should_have(product)
 
 
 def test_user_can_delete_product_from_cart():
