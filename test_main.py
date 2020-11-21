@@ -1,7 +1,7 @@
 from selene.support.conditions import have
 from selene.support.jquery_style_selectors import s
 
-from model.app_manager import App
+from model import app
 from model.given import Given
 from model.components.product_list import ProductList
 
@@ -24,15 +24,15 @@ def test_user_can_add_product_to_cart():
     Given.at_main_page()
     product = ProductList().product(2)  # TODO: consider another way to get product
 
-    (App.MainPage
+    (app.MainPage
         .ProductList.add_to_cart(product)
         .cart_layer.proceed_to_checkout())
 
-    App.OrderPage.Cart.item(1).should_have(product)
+    app.OrderPage.Cart.item(1).should_have(product)
 
 
 def test_user_can_delete_product_from_cart():
     Given.at_order_page_with_product_in_cart()
 
-    App.OrderPage.Cart.item(1).delete()
-    App.OrderPage.should_not_have_cart()
+    app.OrderPage.Cart.item(1).delete()
+    app.OrderPage.should_not_have_cart()
