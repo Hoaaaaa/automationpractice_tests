@@ -6,7 +6,7 @@ class ProductCard:
     def __init__(self, element):
         self.element = element
 
-    def add_to_cart(self):
+    def add_to_cart(self) -> Layer:
         self.element.hover()
         self.element.find(".right-block .ajax_add_to_cart_button").click()
         return Layer()

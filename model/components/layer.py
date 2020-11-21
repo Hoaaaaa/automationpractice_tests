@@ -8,11 +8,11 @@ class Layer:
     element = s("#layer_cart")
 
     @property
-    def cart_layer(self):
+    def cart_layer(self) -> CartLayer:
         return CartLayer(self.element)
 
     @property
-    def product_layer(self):
+    def product_layer(self) -> ProductLayer:
         return ProductLayer(self.element)
 
     def close(self):

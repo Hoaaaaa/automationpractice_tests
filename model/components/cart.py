@@ -11,9 +11,9 @@ class Cart:
     def items(self):
         return self.element.find_all(".cart_item")
 
-    def item(self, index):
+    def item(self, index: int) -> CartItem:
         return CartItem(self.items[index-1])
 
-    def should_have_number_of_items(self, number):
+    def should_have_number_of_items(self, number: int):
         # TODO: check that input number > 0 or make specific exception etc.
         self.items.should(have.size(number))
