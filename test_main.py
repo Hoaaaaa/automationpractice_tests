@@ -11,7 +11,7 @@ from model.components.product_list import ProductList
 
 def test_user_can_login():
     # TODO: GIVEN user is registered
-    given.at_main_page()
+    given.at_shop()
     s(".login").click()
     s("#email").type("hoaa@rambler.ru")
     s("#passwd").type("12345")
@@ -20,10 +20,10 @@ def test_user_can_login():
 
 
 def test_user_can_add_product_to_cart():
-    given.at_main_page()
+    given.at_shop()
     product = ProductList().product(2)
 
-    app.main_page\
+    app.shop\
         .add_to_cart(product)\
         .cart_layer.proceed_to_checkout()
 

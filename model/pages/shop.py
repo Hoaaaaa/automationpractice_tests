@@ -4,12 +4,12 @@ from model.components.product_card import ProductCard
 from model.components.product_list import ProductList
 
 
-class MainPage:
+class Shop:
     product_list: ProductList = ProductList()
 
     # TODO: this method not related to main page,
     #   cause don`t try to use ProdList that exists
-    #   in MainPage instance
+    #   in Shop instance
     #   Consider refactor through self.ProdList and
     #   ProdList.card(index) -> .card(Product)
 
