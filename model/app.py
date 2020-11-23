@@ -1,5 +1,5 @@
-from model.pages.main import main_page
-from model.pages.order import order_page
+from model.pages.main import MainPage
+from model.pages.order import OrderPage
 
-main_page: main_page = main_page()
-order_page: order_page = order_page()
+main_page: MainPage = MainPage()
+order_page: OrderPage = OrderPage()
