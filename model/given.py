@@ -1,6 +1,6 @@
 from selene import browser
 
-from model import app
+from model.pages.shop import shop
 
 
 class Given:
@@ -12,8 +12,7 @@ class Given:
 
     def at_order_page_with_product_in_cart(self):
         self.at_shop()
-        app.shop\
-            .product_list.card(1).add_to_cart()\
+        shop.product_list.card(1).add_to_cart()\
             .cart_layer.proceed_to_checkout()
 
 

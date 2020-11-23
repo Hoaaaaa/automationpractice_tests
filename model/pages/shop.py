@@ -16,3 +16,6 @@ class Shop:
     def add_to_cart(self, product: Product) -> Layer:
         card = ProductCard(product.element)
         return card.add_to_cart()
+
+
+shop: Shop = Shop()

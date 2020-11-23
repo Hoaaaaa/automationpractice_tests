@@ -8,3 +8,6 @@ class Order:
 
     def should_not_have_cart(self):
         self.cart.element.should_not(be.in_dom)
+
+
+order: Order = Order()
