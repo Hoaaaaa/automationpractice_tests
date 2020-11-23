@@ -1,5 +1,5 @@
 from model.pages.shop import Shop
-from model.pages.order import OrderPage
+from model.pages.order import Order
 
 shop: Shop = Shop()
-order_page: OrderPage = OrderPage()
+order: Order = Order()

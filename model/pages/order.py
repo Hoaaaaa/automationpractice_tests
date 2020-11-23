@@ -3,7 +3,7 @@ from selene.support.conditions import be
 from model.components.cart import Cart
 
 
-class OrderPage:
+class Order:
     cart: Cart = Cart()
 
     def should_not_have_cart(self):
