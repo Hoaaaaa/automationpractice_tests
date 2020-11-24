@@ -1,21 +1,27 @@
+from selene.support.jquery_style_selectors import s
+
 from model.components.layer import Layer
 from model.components.product import Product
-from model.components.product_card import ProductCard
 from model.components.product_list import ProductList
 
 
 class Shop:
     product_list: ProductList = ProductList()
+    layer: Layer = Layer()
 
-    # TODO: this method not related to main page,
-    #   cause don`t try to use ProdList that exists
-    #   in Shop instance
-    #   Consider refactor through self.ProdList and
-    #   ProdList.card(index) -> .card(Product)
+    # TODO: Current decision don`t use shop.methods,
+    #   in order to not create complexity.
+    #   Instead only components itself.
+    #   Maybe its temp
+    def add_to_cart(self, *args: Product):
+        for product in args:
+            self.product_list.card_of_(product).add()
+            self.layer.cart_layer.continue_shopping()
+        return self
 
-    def add_to_cart(self, product: Product) -> Layer:
-        card = ProductCard(product.element)
-        return card.add_to_cart()
+    # TODO: refactor
+    def go_to_order(self):
+        s("#header .shopping_cart").click()
 
 
 shop: Shop = Shop()

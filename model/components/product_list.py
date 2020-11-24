@@ -17,3 +17,7 @@ class ProductList:
 
     def card(self, index: int) -> ProductCard:
         return ProductCard(self.products[index-1])
+
+    # TODO: temporary solution
+    def card_of_(self, product: Product) -> ProductCard:
+        return ProductCard(product.element)

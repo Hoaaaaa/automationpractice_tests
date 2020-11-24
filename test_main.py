@@ -25,7 +25,7 @@ def test_user_can_add_product_to_cart():
     given.at_shop()
     product = ProductList().product(2)
 
-    shop.add_to_cart(product)\
+    shop.product_list.card_of_(product).add()\
         .cart_layer.proceed_to_checkout()
 
     order.cart.item(1).should_have(product)
@@ -39,4 +39,15 @@ def test_user_can_delete_product_from_cart():
 
 
 def test_user_can_add_several_products_to_cart():
-    pass
+    given.at_shop()
+    product_one = ProductList().product(1)
+    product_two = ProductList().product(2)
+
+    shop.product_list.card_of_(product_one).add()\
+        .cart_layer.continue_shopping()
+
+    shop.product_list.card_of_(product_two).add()\
+        .cart_layer.proceed_to_checkout()
+
+    order.cart.item(1).should_have(product_one)
+    order.cart.item(2).should_have(product_two)
