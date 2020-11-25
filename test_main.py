@@ -28,6 +28,7 @@ def test_user_can_add_product_to_cart():
     shop.product_list.card_of_(product).add()\
         .cart_layer.proceed_to_checkout()
 
+    order.cart_menu.should_have_quantity(1)
     order.cart.item(1).should_have(product)
 
 
@@ -35,6 +36,8 @@ def test_user_can_delete_product_from_cart():
     given.at_order_page_with_product_in_cart()
 
     order.cart.item(1).delete()
+
+    order.cart_menu.should_be_empty()
     order.should_not_have_cart()
 
 
@@ -46,8 +49,16 @@ def test_user_can_add_several_products_to_cart():
     shop.product_list.card_of_(product_one).add()\
         .cart_layer.continue_shopping()
 
+    shop.cart_menu.should_have_quantity(1)
+
     shop.product_list.card_of_(product_two).add()\
         .cart_layer.proceed_to_checkout()
 
+    order.cart_menu.should_have_quantity(2)
     order.cart.item(1).should_have(product_one)
     order.cart.item(2).should_have(product_two)
+
+
+def test_foo():
+    given.at_shop()
+    shop.cart_menu.content()
