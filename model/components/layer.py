@@ -1,3 +1,4 @@
+from selene.elements import SeleneElement
 from selene.support.jquery_style_selectors import s
 
 from model.components.layer_cart import CartLayer
@@ -5,7 +6,7 @@ from model.components.layer_product import ProductLayer
 
 
 class Layer:
-    element = s("#layer_cart")
+    element: SeleneElement = s("#layer_cart")
 
     @property
     def cart_layer(self) -> CartLayer:

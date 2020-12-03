@@ -1,3 +1,4 @@
+from selene.elements import SeleneElement
 from selene.support.jquery_style_selectors import s
 
 from model.components.product import Product
@@ -6,7 +7,7 @@ from model.components.product_card import ProductCard
 
 class ProductList:
     def __init__(self, id_selector: str = ''):
-        self.element = s(f".product_list{id_selector}")
+        self.element: SeleneElement = s(f".product_list{id_selector}")
 
     @property
     def products(self):

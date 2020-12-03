@@ -1,10 +1,11 @@
+from selene.elements import SeleneElement
 from selene.support.conditions import have
 
 from model.components.product import Product
 
 
 class CartItem:
-    def __init__(self, element):
+    def __init__(self, element: SeleneElement):
         self.element = element
 
     @property
@@ -23,6 +24,6 @@ class CartItem:
         self.element.find(".cart_quantity_delete").click()
 
     def should_have(self, product: Product):
-        # TODO: refactor to using __dir/dict__ etc.
         self.name.should(have.exact_text(f"{product.name}"))
         self.price.should(have.exact_text(f"{product.price}"))
+        return self

@@ -29,7 +29,8 @@ def test_user_can_add_product_to_cart():
         .cart_layer.proceed_to_checkout()
 
     order.cart_menu.should_have_quantity(1)
-    order.cart.item(1).should_have(product)
+    order.cart_menu.content.should_have_only(product)
+    order.cart.should_have_only(product)
 
 
 def test_user_can_delete_product_from_cart():
@@ -43,22 +44,32 @@ def test_user_can_delete_product_from_cart():
 
 def test_user_can_add_several_products_to_cart():
     given.at_shop()
-    product_one = ProductList().product(1)
-    product_two = ProductList().product(2)
+    product_one = ProductList().product(3)
+    product_two = ProductList().product(4)
 
     shop.product_list.card_of_(product_one).add()\
         .cart_layer.continue_shopping()
 
     shop.cart_menu.should_have_quantity(1)
+    shop.cart_menu.content.should_have_only(product_one)
 
     shop.product_list.card_of_(product_two).add()\
         .cart_layer.proceed_to_checkout()
 
     order.cart_menu.should_have_quantity(2)
-    order.cart.item(1).should_have(product_one)
-    order.cart.item(2).should_have(product_two)
+    order.cart_menu.content.should_have_only(product_one, product_two)
+    order.cart.should_have_only(product_one, product_two)
 
 
 def test_foo():
     given.at_shop()
-    shop.cart_menu.content()
+    product_one = ProductList().product(3)
+    product_two = ProductList().product(4)
+
+    shop.product_list.card_of_(product_one).add() \
+        .cart_layer.continue_shopping()
+
+    shop.product_list.card_of_(product_two).add() \
+        .cart_layer.proceed_to_checkout()
+
+    order.cart.should_have_only(product_one, product_two)

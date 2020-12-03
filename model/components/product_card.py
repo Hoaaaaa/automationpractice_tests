@@ -1,9 +1,11 @@
 # TODO: consider rename to ProductContainer (element class-like name)
+from selene.elements import SeleneElement
+
 from model.components.layer import Layer
 
 
 class ProductCard:
-    def __init__(self, element):
+    def __init__(self, element: SeleneElement):
         self.element = element
 
     def add(self) -> Layer:

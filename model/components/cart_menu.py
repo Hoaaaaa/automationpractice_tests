@@ -25,6 +25,7 @@ class CartMenu:
     def should_be_empty(self):
         self.element.find(".ajax_cart_no_product").should(be.visible)
 
+    @property
     def content(self) -> CartMenuContent:
-        self.element.hover()
+        self.element.find("a").hover()
         return CartMenuContent(self.element.find(".cart_block"))
