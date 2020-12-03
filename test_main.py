@@ -28,8 +28,8 @@ def test_user_can_add_product_to_cart():
     shop.product_list.card_of_(product).add()\
         .cart_layer.proceed_to_checkout()
 
-    order.cart_menu.should_have_quantity(1)
-    order.cart_menu.content.should_have_only(product)
+    order.cart_menu.should_have_quantity(1)\
+                   .should_have_only(product)
     order.cart.should_have_only(product)
 
 
@@ -50,14 +50,14 @@ def test_user_can_add_several_products_to_cart():
     shop.product_list.card_of_(product_one).add()\
         .cart_layer.continue_shopping()
 
-    shop.cart_menu.should_have_quantity(1)
-    shop.cart_menu.content.should_have_only(product_one)
+    shop.cart_menu.should_have_quantity(1)\
+                  .should_have_only(product_one)
 
     shop.product_list.card_of_(product_two).add()\
         .cart_layer.proceed_to_checkout()
 
-    order.cart_menu.should_have_quantity(2)
-    order.cart_menu.content.should_have_only(product_one, product_two)
+    order.cart_menu.should_have_quantity(2)\
+                   .should_have_only(product_one, product_two)
     order.cart.should_have_only(product_one, product_two)
 
 
