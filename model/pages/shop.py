@@ -21,9 +21,5 @@ class Shop:
             self.layer.cart_layer.continue_shopping()
         return self
 
-    # TODO: refactor
-    def __go_to_order(self):
-        s("#header .shopping_cart").click()
-
 
 shop: Shop = Shop()
