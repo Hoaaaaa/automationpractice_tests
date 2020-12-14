@@ -40,7 +40,7 @@ def test_user_can_add_products_to_cart():
     order.cart.should_have_only(product_one, product_two)
 
 
-def test_user_can_delete_products_from_cart():
+def test_user_can_delete_products_in_cart():
     given.at_shop()
     product_one = ProductList().product(3)
     product_two = ProductList().product(4)
@@ -62,7 +62,7 @@ def test_user_can_delete_products_from_cart():
     order.should_not_have_cart()
 
 
-def test_foo():
+def test_user_can_delete_products_from_cart_menu():
     given.at_shop()
     product_one = ProductList().product(3)
     product_two = ProductList().product(4)
@@ -73,4 +73,14 @@ def test_foo():
     shop.product_list.card_of_(product_two).add() \
         .cart_layer.proceed_to_checkout()
 
-    order.cart.should_have_only(product_one, product_two)
+    order.cart_menu.content.item(1).remove()
+
+    order.cart_menu.should_have_quantity(1)\
+                   .should_have_only(product_two)
+
+    order.cart.should_have_only(product_two)
+
+    order.cart_menu.content.item(1).remove()
+
+    order.cart_menu.should_be_empty()
+    order.should_not_have_cart()
