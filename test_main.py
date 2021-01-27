@@ -1,24 +1,8 @@
-from selene.support.conditions import have
-from selene.support.jquery_style_selectors import s
-
 from model.given import given
 from model.components.product_list import ProductList
 
 from model.pages.order import order
 from model.pages.shop import shop
-
-# TODO: refactor project structure
-# TODO: config pytest output
-
-
-def test_user_can_login():
-    # TODO: GIVEN user is registered
-    given.at_shop()
-    s(".login").click()
-    s("#email").type("hoaa@rambler.ru")
-    s("#passwd").type("12345")
-    s("#SubmitLogin").click()
-    s(".header_user_info .account").should(have.text("Tests Test"))
 
 
 def test_user_can_add_products_to_cart():
@@ -78,8 +62,13 @@ def test_user_can_delete_products_from_cart_menu():
     order.cart_menu.should_have_quantity(1)\
                    .should_have_only(product_two)
 
+    # TODO: cart and cart_menu have same should methods,
+    #  to follow DRY
     order.cart.should_have_only(product_two)
 
+    # TODO: try to make remove by product object,
+    #  like cart_menu.remove(product_one)
+    #  same for cart
     order.cart_menu.content.item(1).remove()
 
     order.cart_menu.should_be_empty()
